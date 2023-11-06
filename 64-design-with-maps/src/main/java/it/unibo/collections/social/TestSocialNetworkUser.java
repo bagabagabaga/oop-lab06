@@ -8,6 +8,8 @@ import it.unibo.collections.social.api.User;
 import it.unibo.collections.social.impl.SocialNetworkUserImpl;
 import it.unibo.collections.social.impl.UserImpl;
 
+import static java.lang.Math.nextAfter;
+
 import java.util.Collection;
 
 /**
@@ -57,11 +59,25 @@ public final class TestSocialNetworkUser {
         /*
          * Make people follow each other
          */
-        mgladwell.addFollowedUser("acquaintances", ntaleb);
-        dwashington.addFollowedUser("myths", asmith);
-        dwashington.addFollowedUser(WRITERS, ntaleb);
+        kbacon.addFollowedUser("friends", asmith);
+        kbacon.addFollowedUser("friends", dwashington);
+        kbacon.addFollowedUser("colleagues", ntaleb);
+        kbacon.addFollowedUser("friends", mgladwell);
+
+        mgladwell.addFollowedUser("acquaintances", ntaleb); 
+        mgladwell.addFollowedUser("colleagues", kbacon); 
+        mgladwell.addFollowedUser("acquaintances", asmith); 
+        mgladwell.addFollowedUser("acquaintances", dwashington); 
+
+        dwashington.addFollowedUser("celebrities", asmith);
+        dwashington.addFollowedUser("friends", ntaleb);
         dwashington.addFollowedUser("colleagues", kbacon);
-        dwashington.addFollowedUser(WRITERS, mgladwell);
+        dwashington.addFollowedUser("friends", mgladwell);
+
+        ntaleb.addFollowedUser("friends", kbacon);
+        ntaleb.addFollowedUser("friends", dwashington);
+        ntaleb.addFollowedUser("coworkers", ntaleb);
+        ntaleb.addFollowedUser("friends", mgladwell);
         /*
          * No test should fail
          */
