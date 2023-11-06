@@ -99,6 +99,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
+        return followeUserMap.get(groupName);
     }
 
     @Override
