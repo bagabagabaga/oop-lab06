@@ -76,15 +76,15 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-        Collection<U> userSet = followeUserMap.get(circle);
+        Collection<U> userSet = followeUserMap.get(circle); /* Get the old list */
         if(userSet == null){
             userSet = new HashSet<U>();
         }
-        boolean userAlreadyFollowed = userSet.add(user);
-        if(!userAlreadyFollowed){
-            followeUserMap.put(circle, userSet);
+        boolean userNotFollowed = userSet.add(user); /* Update the list */
+        if(userNotFollowed){
+            followeUserMap.put(circle, userSet); /* If changes were made, put the new list */
         }
-        return userAlreadyFollowed;
+        return userNotFollowed;
     }
 
     /**
@@ -94,7 +94,10 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return followeUserMap.get(groupName);
+        if(followeUserMap.containsKey(groupName)){
+            return followeUserMap.get(groupName);
+        }
+        return new HashSet<U>();
     }
 
     @Override

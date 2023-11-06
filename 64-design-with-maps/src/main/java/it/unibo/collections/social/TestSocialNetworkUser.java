@@ -70,8 +70,8 @@ public final class TestSocialNetworkUser {
         mgladwell.addFollowedUser("acquaintances", dwashington); 
 
         dwashington.addFollowedUser("celebrities", asmith);
-        dwashington.addFollowedUser("friends", ntaleb);
-        dwashington.addFollowedUser("colleagues", kbacon);
+        dwashington.addFollowedUser("WRITERS", ntaleb);
+        dwashington.addFollowedUser("WRITERS", kbacon);
         dwashington.addFollowedUser("friends", mgladwell);
 
         ntaleb.addFollowedUser("friends", kbacon);
@@ -86,7 +86,7 @@ public final class TestSocialNetworkUser {
         assertTrue("K Bacon has no followed people called Malcom", kbaconFriends.isEmpty());
         final Collection<User> mgladFriends = mgladwell.getFollowedUsersInGroup("Close friends");
         assertTrue("M Gladwell has not set yet any group called \"Close friends\"", mgladFriends.isEmpty());
-        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup(WRITERS);
+        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup("WRITERS");
         assertTrue("Denzel has 2 followed people in group \"" + WRITERS + "\"",  dwashFriends.size() == 2);
         /*
          * Adding another friend to Denzel's "writers" group
