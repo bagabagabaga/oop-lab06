@@ -4,6 +4,8 @@
 2. Complete the test UseGraph
 3. Run the test and understand the outcome
 
+Implemented a DFS
+
 **Bonus**: implement a Graph where the exploration strategy can be selected arbitrarily.
 Implement both a depth-first strategy and a breadth-first strategy.
 Helpful readings:
