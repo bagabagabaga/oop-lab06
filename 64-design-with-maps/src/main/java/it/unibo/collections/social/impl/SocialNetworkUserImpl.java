@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.w3c.dom.UserDataHandler;
+
 /**
  * 
  * This will be an implementation of
@@ -36,7 +38,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * In order to save the people followed by a user organized in groups, adopt
      * a generic-type Map:  think of what type of keys and values would best suit the requirements
      */
-    Map<String, U> followedGroupsMap = new HashMap<String, U>(); /* String: name of the group, user U: followed user */
+    HashMap<String, Collection<U>> followeUserMap;
     /*
      * [CONSTRUCTORS]
      *
@@ -63,12 +65,14 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
+        followeUserMap = new HashMap<String, Collection<U>>();
     }
     /*
      * 2) Define a further constructor where the age defaults to -1
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user) {
         super(name, surname, user, -1);
+        followeUserMap = new HashMap<String, Collection<U>>();
     }
     /*
      * [METHODS]
@@ -77,6 +81,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
+
     }
 
     /**
@@ -86,11 +91,9 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
     }
 }
