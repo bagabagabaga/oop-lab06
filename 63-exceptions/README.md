@@ -36,7 +36,7 @@ Remove all `println`s from `ArithmeticService`: when the system enters an incons
 an `IllegalStateException` with the same message of the print should be thrown.
 Remember to preserve the stacktrace of the cause exceptions if there is any.
 
-### Use `finally` to compute even after the `return` -> done
+### Use `finally` to compute even after the `return` -> done 
 
 Modify `ArithmeticService.process()`:
 no matter what, once the control flow exits the method,
