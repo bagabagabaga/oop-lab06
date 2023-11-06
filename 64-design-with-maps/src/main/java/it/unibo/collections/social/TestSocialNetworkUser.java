@@ -98,7 +98,7 @@ public final class TestSocialNetworkUser {
          */
         assertTrue(
             "Denzel has STILL 2 followed people in group \"" + WRITERS + "\"",
-            dwashington.getFollowedUsersInGroup(WRITERS).size() == 2
+            dwashington.getFollowedUsersInGroup("WRITERS").size() == 2
         );
     }
 
