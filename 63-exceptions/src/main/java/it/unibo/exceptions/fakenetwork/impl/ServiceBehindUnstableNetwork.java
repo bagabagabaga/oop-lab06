@@ -2,6 +2,7 @@ package it.unibo.exceptions.fakenetwork.impl;
 
 import it.unibo.exceptions.arithmetic.ArithmeticService;
 import it.unibo.exceptions.fakenetwork.api.NetworkComponent;
+import it.unibo.exceptions.NetworkException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
      * @param randomSeed random generator seed for reproducibility
      */
     public ServiceBehindUnstableNetwork(final double failProbability, final int randomSeed) {
-        /*
-         * The probability should be in [0, 1[!
-         */
+        if(failProbability >= 1 || failProbability < 0){
+                throw new IllegalArgumentException("The probability passed as argument is less than zero or mode or equal to one");
+        }
         this.failProbability = failProbability;
         randomGenerator = new Random(randomSeed);
     }
@@ -55,8 +56,7 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
             commandQueue.add(data);
         } else {
             final var message = data + " is not a valid keyword (allowed: " + KEYWORDS + "), nor is a number";
-            System.out.println(message);
-            commandQueue.clear();
+            throw new IllegalArgumentException(message, new NumberFormatException());
             /*
              * This method, in this point, should throw an IllegalStateException.
              * Its cause, however, is the previous NumberFormatException.
@@ -72,14 +72,15 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
         accessTheNetwork(null);
         try {
             return new ArithmeticService(Collections.unmodifiableList(commandQueue)).process();
-        } finally {
+        }
+        finally {
             commandQueue.clear();
         }
     }
 
     private void accessTheNetwork(final String message) throws IOException {
         if (randomGenerator.nextDouble() < failProbability) {
-            throw new IOException("Generic I/O error");
+            throw new NetworkException(message);
         }
     }
 
