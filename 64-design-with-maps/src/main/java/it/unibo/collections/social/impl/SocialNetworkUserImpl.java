@@ -66,7 +66,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * 2) Define a further constructor where the age defaults to -1
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user) {
-        super(name, surname, user, -1);
+        super(name, surname, user);
         followeUserMap = new HashMap<String, Collection<U>>();
     }
     /*

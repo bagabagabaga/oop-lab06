@@ -81,7 +81,7 @@ public final class TestSocialNetworkUser {
         /*
          * No test should fail
          */
-        assertTrue("smith has not set any age at all", !asmith.isAgeDefined());
+        assertTrue("smith has not set any age at all", !asmith.isAgeDefined()); // OK 
         final Collection<User> kbaconFriends = kbacon.getFollowedUsersInGroup("Malcom");
         assertTrue("K Bacon has no followed people called Malcom", kbaconFriends.isEmpty());
         final Collection<User> mgladFriends = mgladwell.getFollowedUsersInGroup("Close friends");
